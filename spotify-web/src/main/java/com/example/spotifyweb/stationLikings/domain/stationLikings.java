@@ -39,5 +39,4 @@ public class stationLikings extends BaseTimeEntity {
     @JoinColumn(name = "\"memberId\"")
     private Member member;
 
-
 }

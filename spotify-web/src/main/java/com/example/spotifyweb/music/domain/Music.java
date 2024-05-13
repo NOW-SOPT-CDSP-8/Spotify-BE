@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
 public class Music {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "\"musicId\"")
@@ -38,15 +39,11 @@ public class Music {
     @Column(nullable = false, name = "\"musicLikings\"")
     private Long musicLikings = 0L;
 
-
     @Column(nullable = false, name = "\"musicReleaseDate\"")
     private LocalDate musicReleaseDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "\"genreTitle\"")
-    private GenreCategory genreTitle; //카드 타입 [신용, 체크]
-
-
-
+    private GenreCategory genreTitle;
 
 }

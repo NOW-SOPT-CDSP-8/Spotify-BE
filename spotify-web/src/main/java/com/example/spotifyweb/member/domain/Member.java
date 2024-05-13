@@ -24,22 +24,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
 public class Member extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "\"memberId\"")
     private Long id;
 
-
     @Column(length = 30, nullable = false, name = "\"memberName\"")
     private String memberName;
 
     @Column(nullable = false)
-    private boolean issubscribed;
+    private boolean isSubscribed;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"cardId\"", nullable = false)
     private Card card;
-
-
 
 }
