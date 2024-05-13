@@ -1,9 +1,11 @@
-package com.example.spotifyweb.member.domain;
+package com.example.spotifyweb.card.domain;
 
-import com.example.spotifyweb.card.domain.Card;
 import com.example.spotifyweb.global.common.entitiy.BaseTimeEntity;
+import com.example.spotifyweb.member.domain.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,29 +19,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "members")
+@Table(name = "cards")
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
-public class Member extends BaseTimeEntity {
+public class Card extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "\"memberId\"")
+    @Column(name = "\"cardId\"")
     private Long id;
 
 
-    @Column(length = 30, nullable = false, name = "\"memberName\"")
-    private String memberName;
+    @Column(length = 30, nullable = false, name = "\"cardName\"")
+    private String cardName;
 
-    @Column(nullable = false)
-    private boolean issubscribed;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "\"cardType\"")
+    private CardCategory cardType; //카드 타입 [신용, 체크]
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"cardId\"", nullable = false)
-    private Card card;
-
-
+    @Column(length = 4, nullable = false, name = "\"cardNumber\"")
+    private String cardNumber;
 
 }

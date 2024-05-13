@@ -1,7 +1,8 @@
-package com.example.spotifyweb.member.domain;
+package com.example.spotifyweb.stationLikings.domain;
 
-import com.example.spotifyweb.card.domain.Card;
 import com.example.spotifyweb.global.common.entitiy.BaseTimeEntity;
+import com.example.spotifyweb.member.domain.Member;
+import com.example.spotifyweb.station.domain.Station;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,29 +18,26 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "members")
+@Table(name = "\"stationLikings\"")
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
-public class Member extends BaseTimeEntity {
+public class stationLikings extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "\"memberId\"")
+    @Column(name = "\"stationLikingId\"")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "\"stationId\"")
+    private Station station;
 
-    @Column(length = 30, nullable = false, name = "\"memberName\"")
-    private String memberName;
-
-    @Column(nullable = false)
-    private boolean issubscribed;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"cardId\"", nullable = false)
-    private Card card;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "\"memberId\"")
+    private Member member;
 
 
 }
