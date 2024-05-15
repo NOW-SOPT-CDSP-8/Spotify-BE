@@ -10,20 +10,21 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ApiResponse<T> {
-    private HttpStatus status;
+    private int status;
     private String message;
     private T data;
 
-    public static <T> ApiResponse<T> success(HttpStatus status, String message, T data) {
+    public static <T> ApiResponse<T> success(int status, String message, T data) {
         return new ApiResponse<>(status, message, data);
     }
 
-    public static <T> ApiResponse<T> success(HttpStatus status, String message) {
+    public static <T> ApiResponse<T> success(int status, String message) {
         return new ApiResponse<>(status, message, null);
     }
 
-    public static <T> ApiResponse<T> error(HttpStatus status, String message) {
+    public static <T> ApiResponse<T> error(int status, String message) {
         return new ApiResponse<>(status, message, null);
     }
 }
+
 
