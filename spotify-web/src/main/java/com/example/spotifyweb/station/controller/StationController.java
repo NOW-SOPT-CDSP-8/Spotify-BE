@@ -10,17 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class StationController {
+public class StationController{
 
     private final StationService stationService;
 
     @GetMapping("/api/v1/stations")
     public ApiResponse getStations(@RequestHeader(value = "memberId") Long memberId) {
 
-        return ApiResponse.success(
-                SuccessMessage.GET_STATIONS_SUCCESS.getStatus(),
-                SuccessMessage.GET_STATIONS_SUCCESS.getMessage(),
-                stationService.getStations());
+        return ApiResponse.success(SuccessMessage.GET_STATIONS_SUCCESS.getStatus(), SuccessMessage.GET_STATIONS_SUCCESS.getMessage(), stationService.getStations());
     }
-
 }
