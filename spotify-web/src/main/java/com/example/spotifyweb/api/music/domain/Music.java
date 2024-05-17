@@ -1,7 +1,6 @@
 package com.example.spotifyweb.api.music.domain;
 
 
-import com.example.spotifyweb.api.music.GenreCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
