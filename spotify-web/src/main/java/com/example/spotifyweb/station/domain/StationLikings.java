@@ -1,8 +1,7 @@
-package com.example.spotifyweb.stationLikings.domain;
+package com.example.spotifyweb.station.domain;
 
 import com.example.spotifyweb.global.common.entitiy.BaseTimeEntity;
 import com.example.spotifyweb.member.domain.Member;
-import com.example.spotifyweb.station.domain.Station;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
