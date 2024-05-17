@@ -9,10 +9,14 @@ import org.springframework.http.HttpStatus;
 public enum SuccessMessage {
 
     //200
-    GET_STATIONS_SUCCESS(HttpStatus.OK.value(),"스테이션 제목 조회 성공"),
-    GET_MUSICS_SUCCESS(HttpStatus.OK.value(), "스테이션에 따른 노래 리스트 조회 성공");
-    //202
+    GET_STATIONS_SUCCESS(HttpStatus.OK.value(), "스테이션 제목 조회 성공"),
+    GET_MUSICS_SUCCESS(HttpStatus.OK.value(), "스테이션에 따른 노래 리스트 조회 성공"),
 
+    //201
+    POST_STATION_LIKING_SUCCESS(HttpStatus.CREATED.value(), "스테이션 좋아요 성공")
+
+    //202
+    ;
     private final int status;
     private final String message;
 }

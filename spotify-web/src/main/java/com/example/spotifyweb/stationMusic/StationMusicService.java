@@ -3,7 +3,7 @@ package com.example.spotifyweb.stationMusic;
 import com.example.spotifyweb.global.common.exception.NotFoundException;
 import com.example.spotifyweb.global.common.response.ErrorMessage;
 import com.example.spotifyweb.music.dto.MusicGetResponseDto;
-import com.example.spotifyweb.station.repository.StationsRepository;
+import com.example.spotifyweb.station.repository.StationRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class StationMusicService {
 
     private final StationMusicRepository stationMusicRepository;
 
-    private final StationsRepository stationsRepository;
+    private final StationRepository stationsRepository;
 
     public List<MusicGetResponseDto> getMusicByStationIdWithCursor(Long stationId, Long cursor) {
 
@@ -34,6 +34,7 @@ public class StationMusicService {
             stationMusics = stationMusicRepository.findTop5ByStationIdAndIdGreaterThanOrderByIdAsc(stationId, cursor);
         }
 
-        return stationMusics.stream().map(stationMusic -> MusicGetResponseDto.of(stationMusic.getMusic())).collect(Collectors.toList());
+        return stationMusics.stream().map(stationMusic -> MusicGetResponseDto.of(stationMusic.getMusic()))
+                .collect(Collectors.toList());
     }
 }

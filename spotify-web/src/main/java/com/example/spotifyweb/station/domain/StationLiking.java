@@ -1,8 +1,7 @@
-package com.example.spotifyweb.stationLikings.domain;
+package com.example.spotifyweb.station.domain;
 
 import com.example.spotifyweb.global.common.entitiy.BaseTimeEntity;
 import com.example.spotifyweb.member.domain.Member;
-import com.example.spotifyweb.station.domain.Station;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,8 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(access = AccessLevel.PRIVATE)
-public class StationLikings extends BaseTimeEntity {
+public class StationLiking extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,5 +36,11 @@ public class StationLikings extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"memberId\"")
     private Member member;
+
+    @Builder
+    public StationLiking(Station station, Member member) {
+        this.station = station;
+        this.member = member;
+    }
 
 }
