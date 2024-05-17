@@ -22,8 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(access = AccessLevel.PRIVATE)
-public class StationLikings extends BaseTimeEntity {
+public class StationLiking extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +36,11 @@ public class StationLikings extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"memberId\"")
     private Member member;
+
+    @Builder
+    public StationLiking(Station station, Member member) {
+        this.station = station;
+        this.member = member;
+    }
 
 }
