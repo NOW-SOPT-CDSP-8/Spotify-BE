@@ -4,6 +4,7 @@ import com.example.spotifyweb.api.station.service.StationService;
 import com.example.spotifyweb.global.common.response.ApiResponse;
 import com.example.spotifyweb.global.common.response.SuccessMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,5 +30,13 @@ public class StationController {
         stationService.postStationLiking(memberId, staionId);
         return ApiResponse.success(SuccessMessage.POST_STATION_LIKING_SUCCESS.getStatus(),
                 SuccessMessage.POST_STATION_LIKING_SUCCESS.getMessage());
+    }
+
+    @DeleteMapping("/api/v1/{staionId}/unliked")
+    public ApiResponse deleteStation(@RequestHeader(value = "memberId") Long memberId,
+                                     @PathVariable("staionId") Long staionId) {
+        stationService.deleteStationLiking(memberId, staionId);
+        return ApiResponse.success(SuccessMessage.DELETE_STATION_LIKING_SUCCESS.getStatus(),
+                SuccessMessage.DELETE_STATION_LIKING_SUCCESS.getMessage());
     }
 }
