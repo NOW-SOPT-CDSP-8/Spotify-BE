@@ -24,8 +24,8 @@ public class StationController {
     }
 
     @PostMapping("/api/v1/{staionId}/liked")
-    public ApiResponse postStation(@RequestHeader(value = "memberId") Long memberId,
-                                   @PathVariable("staionId") Long staionId) {
+    public ApiResponse postStationLiking(@RequestHeader(value = "memberId") Long memberId,
+                                         @PathVariable("staionId") Long staionId) {
         stationService.postStationLiking(memberId, staionId);
         return ApiResponse.success(SuccessMessage.POST_STATION_LIKING_SUCCESS.getStatus(),
                 SuccessMessage.POST_STATION_LIKING_SUCCESS.getMessage());
