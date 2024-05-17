@@ -9,6 +9,7 @@ import com.example.spotifyweb.api.station.repository.StationLikingRepository;
 import com.example.spotifyweb.api.station.repository.StationRepository;
 import com.example.spotifyweb.global.common.exception.NotFoundException;
 import com.example.spotifyweb.global.common.response.ErrorMessage;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -42,9 +43,27 @@ public class StationService {
         stationLikingRepository.save(stationLiking);
     }
 
+    @Transactional
+    public void deleteStationLiking(Long memberId, Long stationId) {
+
+        Station station = stationsRepository.findByIdOrThrow(stationId);
+        Member member = memberRepository.findByIdOrThrow(memberId);
+
+        isExistStationLiking(member, station);
+
+        stationLikingRepository.deleteByMemberAndStation(member, station);
+
+    }
+
     private void isDuplicateStationLiking(Member member, Station station) {
         if (stationLikingRepository.existsByMemberAndStation(member, station)) {
             throw new NotFoundException(ErrorMessage.DUPLICATION_STATION_LIKE);
+        }
+    }
+
+    private void isExistStationLiking(Member member, Station station) {
+        if (!stationLikingRepository.existsByMemberAndStation(member, station)) {
+            throw new NotFoundException(ErrorMessage.STATION_LIKING_BY_MEMBER_AND_STATION_EXCEPTION);
         }
     }
 }
