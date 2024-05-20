@@ -7,5 +7,5 @@ public interface StationMusicRepository extends JpaRepository<StationMusic, Long
 
     List<StationMusic> findFirst5ByStationIdOrderByIdAsc(Long stationId);
 
-    List<StationMusic> findTop5ByStationIdAndIdGreaterThanOrderByIdAsc(Long stationId, Long cursor);
+    List<StationMusic> findTop5ByStationIdAndMusicIdGreaterThanOrderByIdAsc(Long stationId, Long cursor);
 }

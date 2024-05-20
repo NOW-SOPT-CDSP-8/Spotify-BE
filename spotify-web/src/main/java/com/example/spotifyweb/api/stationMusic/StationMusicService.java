@@ -31,7 +31,8 @@ public class StationMusicService {
             stationMusics = stationMusicRepository.findFirst5ByStationIdOrderByIdAsc(stationId);
         } else {
             // 특정 stationId에 해당하는 StationMusic을 PK기준으로 오름차순 정렬하고, PK > cursor 인 최대 5개의 결과를 반환합니다.
-            stationMusics = stationMusicRepository.findTop5ByStationIdAndIdGreaterThanOrderByIdAsc(stationId, cursor);
+            stationMusics = stationMusicRepository.findTop5ByStationIdAndMusicIdGreaterThanOrderByIdAsc(stationId,
+                    cursor);
         }
 
         return stationMusics.stream().map(stationMusic -> MusicGetResponseDto.of(stationMusic.getMusic()))
